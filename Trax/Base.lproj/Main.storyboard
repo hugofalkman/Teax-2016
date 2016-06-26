@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-eX-N8m">
-                                <rect key="frame" x="20" y="64" width="560" height="68"/>
+                                <rect key="frame" x="20" y="20" width="560" height="68"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y4w-Wa-CJE">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
@@ -32,6 +32,9 @@
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xm2-1t-bid">
                                                 <rect key="frame" x="96" y="0.0" width="464" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="9yz-qM-Q4f"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -60,7 +63,6 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jCU-eX-N8m" firstAttribute="top" secondItem="zyK-va-e6L" secondAttribute="bottom" id="Ovq-9W-PDm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jCU-eX-N8m" secondAttribute="trailing" id="dc4-ST-vBM"/>
@@ -83,7 +85,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-dp-0W7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="U4l-dC-zIa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2602" y="-389"/>
+            <point key="canvasLocation" x="1790" y="-367"/>
         </scene>
         <!--Trax-->
         <scene sceneID="tne-QT-ifu">
@@ -117,7 +119,9 @@
                     <connections>
                         <outlet property="mapView" destination="kQ7-0E-OoG" id="afo-T0-Dg6"/>
                         <segue destination="Sg9-rR-afa" kind="show" identifier="Show Image" id="A5X-SV-LJn"/>
-                        <segue destination="gRX-Wp-lCm" kind="presentation" identifier="Edit Waypoint" id="R8W-2u-E4V"/>
+                        <segue destination="cNz-we-D9a" kind="popoverPresentation" identifier="Edit Waypoint" popoverAnchorView="kQ7-0E-OoG" id="aco-kO-crX">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -186,24 +190,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyS-fV-6x5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="228" y="327"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="pzG-2f-kTg">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gRX-Wp-lCm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4RL-jF-3ZL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cNz-we-D9a" kind="relationship" relationship="rootViewController" id="UV4-HS-pFe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bWT-ne-63j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1790" y="-389"/>
         </scene>
     </scenes>
 </document>

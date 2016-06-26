@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class GPXViewController: UIViewController, MKMapViewDelegate {
+class GPXViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentationControllerDelegate {
     
     // MARK: Public Model
     
@@ -120,6 +120,10 @@ class GPXViewController: UIViewController, MKMapViewDelegate {
         } else if segue.identifier == Constants.EditUserWaypoint {
             if let editableWaypoint = waypoint as? EditableWaypoint,
                 let ewvc = destination as? EditWaypointViewController {
+                if let ppc = ewvc.popoverPresentationController {
+                    ppc.sourceRect = annotationView!.frame
+                    ppc.delegate = self
+                }
                 ewvc.waypointToEdit = editableWaypoint
             }
         }
@@ -141,6 +145,47 @@ class GPXViewController: UIViewController, MKMapViewDelegate {
         selectWaypoint((segue.sourceViewController.contentViewController as? EditWaypointViewController)?.waypointToEdit)
     }
     
+    // MARK: UIPopoverPresentationControllerDelegate
+    
+    // when popover is dismissed, selected the just-edited waypoint
+    // see also unwind target above (does the same thing for adapted UI)
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        selectWaypoint((popoverPresentationController.presentedViewController as? EditWaypointViewController)?.waypointToEdit)
+    }
+    
+    // if we're horizontally compact
+    // then adapt by going to .OverFullScreen
+    // .OverFullScreen fills the whole screen, but lets underlying MVC show through
+    
+    func adaptivePresentationStyleForPresentationController(
+        controller: UIPresentationController,
+        traitCollection: UITraitCollection
+        ) -> UIModalPresentationStyle {
+        return traitCollection.horizontalSizeClass == .Compact ? .OverFullScreen : .None
+    }
+    
+    // when adapting to full screen
+    // wrap the MVC in a navigation controller
+    // and install a blurring visual effect behind all the navigation controller draws
+    // autoresizingMask is "old style" constraints
+    
+    func presentationController(
+        controller: UIPresentationController,
+        viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle
+        ) -> UIViewController? {
+        if style == .FullScreen || style == .OverFullScreen {
+            let navcon = UINavigationController(rootViewController: controller.presentedViewController)
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+            visualEffectView.frame = navcon.view.bounds
+            visualEffectView.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
+            navcon.view.insertSubview(visualEffectView, atIndex: 0)
+            return navcon
+        } else {
+            return nil
+        }
+    }
+
     // MARK: Constants
     
     private struct Constants {
@@ -160,4 +205,3 @@ extension UIViewController {
         }
     }
 }
-
