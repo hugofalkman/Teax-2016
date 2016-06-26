@@ -3,8 +3,88 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Edit Waypoint View Controller-->
+        <scene sceneID="jlo-xi-xi4">
+            <objects>
+                <viewController id="cNz-we-D9a" customClass="EditWaypointViewController" customModule="Trax" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zyK-va-e6L"/>
+                        <viewControllerLayoutGuide type="bottom" id="yw4-NW-IMc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xSB-vp-kOP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-eX-N8m">
+                                <rect key="frame" x="20" y="64" width="560" height="68"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y4w-Wa-CJE">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyZ-aq-J90">
+                                                <rect key="frame" x="0.0" y="0.0" width="88" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xm2-1t-bid">
+                                                <rect key="frame" x="96" y="0.0" width="464" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9GD-5k-5sp">
+                                        <rect key="frame" x="0.0" y="38" width="560" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S4-cF-M6H">
+                                                <rect key="frame" x="0.0" y="0.0" width="88" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j91-LL-hIs">
+                                                <rect key="frame" x="96" y="0.0" width="464" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4S4-cF-M6H" firstAttribute="width" secondItem="hyZ-aq-J90" secondAttribute="width" id="3vH-lf-QYt"/>
+                                    <constraint firstItem="hyZ-aq-J90" firstAttribute="height" secondItem="4S4-cF-M6H" secondAttribute="height" id="cWr-WP-8iC"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jCU-eX-N8m" firstAttribute="top" secondItem="zyK-va-e6L" secondAttribute="bottom" id="Ovq-9W-PDm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jCU-eX-N8m" secondAttribute="trailing" id="dc4-ST-vBM"/>
+                            <constraint firstItem="yw4-NW-IMc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jCU-eX-N8m" secondAttribute="bottom" constant="8" symbolic="YES" id="okh-ez-Gvd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="jCU-eX-N8m" secondAttribute="leading" id="z1j-EE-qv0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uGE-HI-ptI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Cuw-RC-c6C">
+                            <connections>
+                                <segue destination="U4l-dC-zIa" kind="unwind" unwindAction="updatedUserWaypoint:" id="3gL-e4-aOy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="infoTextField" destination="j91-LL-hIs" id="Pcq-I4-Spf"/>
+                        <outlet property="nameTextField" destination="xm2-1t-bid" id="VPg-sO-nCI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-dp-0W7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="U4l-dC-zIa" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2602" y="-389"/>
+        </scene>
         <!--Trax-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -37,6 +117,7 @@
                     <connections>
                         <outlet property="mapView" destination="kQ7-0E-OoG" id="afo-T0-Dg6"/>
                         <segue destination="Sg9-rR-afa" kind="show" identifier="Show Image" id="A5X-SV-LJn"/>
+                        <segue destination="gRX-Wp-lCm" kind="presentation" identifier="Edit Waypoint" id="R8W-2u-E4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -105,6 +186,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyS-fV-6x5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="228" y="327"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pzG-2f-kTg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gRX-Wp-lCm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4RL-jF-3ZL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cNz-we-D9a" kind="relationship" relationship="rootViewController" id="UV4-HS-pFe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWT-ne-63j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="-389"/>
         </scene>
     </scenes>
 </document>
