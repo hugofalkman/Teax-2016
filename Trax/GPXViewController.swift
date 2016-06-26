@@ -88,6 +88,27 @@ class GPXViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.leftCalloutAccessoryView {
+            performSegueWithIdentifier(Constants.ShowImageSegue, sender: view)
+        }
+    }
+    
+    // MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController.contentViewController
+        let annotationView = sender as? MKAnnotationView
+        let waypoint = annotationView?.annotation as? GPX.Waypoint
+        
+        if segue.identifier == Constants.ShowImageSegue {
+            if let ivc = destination as? ImageViewController {
+                ivc.imageURL = waypoint?.imageURL
+                ivc.title = waypoint?.name
+            }
+        }
+    }
+    
     // MARK: Constants
     
     private struct Constants {
@@ -95,6 +116,16 @@ class GPXViewController: UIViewController, MKMapViewDelegate {
         static let AnnotationViewReuseIdentifier = "waypoint"
         static let ShowImageSegue = "Show Image"
         static let EditUserWaypoint = "Edit Waypoint"
+    }
+}
+
+extension UIViewController {
+    var contentViewController: UIViewController {
+        if let navcon = self as? UINavigationController {
+            return navcon.visibleViewController ?? navcon
+        } else {
+            return self
+        }
     }
 }
 
