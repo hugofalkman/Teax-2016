@@ -19,6 +19,10 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kQ7-0E-OoG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="3tk-0H-YQ7" appends="YES" id="4q2-Al-JYx"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -36,13 +40,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="3tk-0H-YQ7">
+                    <connections>
+                        <action selector="addWaypoint:" destination="BYZ-38-t0r" id="Iwf-FG-8ny"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1040" y="327"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="uTZ-a4-zbH">
             <objects>
-                <viewController id="Sg9-rR-afa" customClass="ImageViewController" customModule="Cassini" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Sg9-rR-afa" customClass="ImageViewController" customModule="Trax" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c25-kf-431"/>
                         <viewControllerLayoutGuide type="bottom" id="Jsk-zc-5we"/>

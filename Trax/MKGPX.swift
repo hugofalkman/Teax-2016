@@ -5,8 +5,23 @@
 //  Created by H Hugo Falkman on 2016-06-26.
 //  Copyright © 2016 H Hugo Falkman. All rights reserved.
 //
+//  Enhancements to GPX.Waypoint to support MKMapView
 
 import MapKit
+
+class EditableWaypoint : GPX.Waypoint {
+    
+    override var coordinate: CLLocationCoordinate2D {
+        get {
+            return super.coordinate
+        }
+        set {
+            latitude = newValue.latitude
+            longitude = newValue.longitude
+        }
+    }
+    
+}
 
 extension GPX.Waypoint : MKAnnotation
 {
